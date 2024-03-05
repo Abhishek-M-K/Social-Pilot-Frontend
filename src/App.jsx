@@ -12,7 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<LandingPage />} />
+        <Route  path ="/" index element={<LandingPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
@@ -28,5 +28,6 @@ function App() {
     </BrowserRouter>
   );
 }
+
 
 export default App;
