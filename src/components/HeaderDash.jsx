@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { UserButton, useClerk } from "@clerk/clerk-react";import React, { useEffect, useState } from "react";
 // import { hamburger } from "../assets/icons";
 // import { headerLogo } from "../assets/images";
 import { hamburger } from "../assets/icons/index.js";
 import { Link } from "react-router-dom";
-import { DashLinks } from "../constants/index.js";
+import { DashLinks, SideLinks } from "../constants/index.js";
 import { active, email, search } from "../assets/icons/index.js";
-import { UserButton, useClerk } from "@clerk/clerk-react";
+
 
 const useAutoLogout = () => {
   const { signOut } = useClerk();
@@ -36,10 +36,10 @@ const HeaderDash = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
-    <header className="mx-4 my-4  bg-white">
-      <nav className="flex justify-between items-center max-container">
+    <header className="relative sm:z-50 ">
+      <nav className="flex justify-between w-full  items-center">
         <a href="">
-          <h1>DashBoard</h1>
+          <h1 className="sm:mx-0 mx-[1rem]"> {SideLinks.find(link => window.location.pathname.includes(link.href.split('/')[1])).label}</h1>
         </a>
         <div className="hidden max-lg:block ">
           <img
@@ -62,7 +62,7 @@ const HeaderDash = () => {
           ))}
         </ul>
 
-        <ul className={`${isMenuOpen ? "grid grid-cols-1" : "hidden"} absolute top-10 p-6 gap-5 right-1 m-6   border-2  z-20  bg-blue rounded-xl `}>
+        <ul className={`${isMenuOpen ? "grid grid-cols-1" : "hidden"} absolute top-8 p-6 gap-5 right-1   border-1 border-black b  z-20  bg-[#cecef3] rounded-xl `}>
           {DashLinks.map((item) => (
             <li key={item.label}>
               <Link to={item.href} className="font-montserrat leading-normal  text-slate-gray my-20">

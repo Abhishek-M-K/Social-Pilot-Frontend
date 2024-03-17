@@ -18,13 +18,13 @@ export default {
     },
     extend: {},
     plugins: [],
-    colors: {
-      black:'black',
-      white:'white',
-      div2: '#FFFFFF',
-      blue: '#D5DCF6',
-      div1: '#E1F5FE',
-  },
+  //   colors: {
+  //     black:'black',
+  //     white:'white',
+  //     div2: '#FFFFFF',
+  //     blue: '',
+
+  // },
   fontFamily: {
     mona:'"Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif'
   },

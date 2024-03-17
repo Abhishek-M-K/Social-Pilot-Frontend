@@ -1,87 +1,133 @@
-import React, { useState } from "react";
-// import { hamburger } from "../assets/icons";
-// import { headerLogo } from "../assets/images";
-import { hamburger } from "../assets/icons/index.js";
+import React from "react";
+import { NavLink } from "react-router-dom";
+import {
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  Button,
+} from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 import { SignOutButton } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
-import { SideLinks } from "../constants/index.js";
-import { NavLink } from "react-router-dom";
+import { hamburger } from "../assets/icons";
 
-const SideBar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+function SideBar() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
+  const isLaptopDevice = () => {
+    const width = window.innerWidth;
+    return width > 1024; // Adjust this value according to your screen size breakpoint for laptops
   };
+
+  // Set initial isOpen state based on device type
+  React.useEffect(() => {
+    if (isLaptopDevice()) {
+      onOpen();
+    }
+  }, []);
+
   return (
-    <div className="flex h-full ">
-      <div className="hidden max-lg:block  absolute top-4 left-3 z-40">
-        <img
-          src={hamburger}
-          alt="hamburger icon"
-          width={25}
-          height={25}
-          onClick={toggleMenu}
-          className="cursor-pointer"
-        />
-      </div>
-      <div
-        className={`${
-          isMenuOpen ? "block" : "hidden"
-        }   border-2  z-20 bg-[#3949AB] h-full sm:w-[20%] w-[80%] fixed sm:block `}
-      >
-        <div className="flex flex-col my-4 py-2 mx-8 items-left">
-          <div className="flex">
-            <div className="  sm:top-0 sm:right-0 sm:relative absolute top-4 right-3 text-white font-mona ">
-              SocialPilot
-            </div>
+    <>
+      <div className=" ">
+        <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+          <img
+            src={hamburger}
+            alt="hamburger icon"
+            width={25}
+            height={25}
+            className="cursor-pointer sm:hidden  "
+          />
+        </Button>
+        <Drawer
+          isOpen={isOpen}
+          placement="left"
+          onClose={onClose}
+          finalFocusRef={btnRef}
+        >
+          <DrawerOverlay />
+          <DrawerContent>
+            <div className="  flex flex-col  bg-[#ececfc]  sm:w-[20vw] w-[80vw] h-full">
+              <DrawerHeader>
+                <div className="flex justify-left items-center   m-[1rem] text-[#9D9DFE] text-lg font-mona">
+                  <img
+                    src="src/assets/logo.svg" // Correct the path to your logo
+                    alt="logo"
+                    height={29}
+                    className="m-0 h-[29px]"
+                  />
+                  <h1 className="sm:mr-[35%] mr-[45%] ml-[0.5rem] ">
+                    SocialPilot
+                  </h1>
+                  <div className="sm:hidden">
+                    {" "}
+                    <DrawerCloseButton />
+                  </div>
+                </div>
+              </DrawerHeader>
 
-            <div className="mt-20 absolute flex flex-col items-start gap-8 text-lg  leading-normal font-mona  ">
-              <NavLink
-                to="/dashboard"
-                className="hover:text-white"
-                activeClassName="font-bold"
-              >
-                Dashboard
-              </NavLink>
-              <NavLink
-                to="/recruitment"
-                className="hover:text-white"
-                activeClassName="font-bold"
-              >
-                Recruitment
-              </NavLink>
-              <NavLink
-                to="/onboarding"
-                className="hover:text-white"
-                activeClassName="font-bold"
-              >
-                Onboarding/Connect
-              </NavLink>
-              <NavLink
-                to="/recruitment-post"
-                className="hover:text-white"
-                activeClassName="font-bold"
-              >
-                Recruitment Post
-              </NavLink>
-              {/* </div> */}
-            </div>
-          </div>
+              <DrawerBody>
+                <div className=" flex flex-col items-left sm:ml-[2rem] ml-[2rem] text-lg text-gray-500 leading-relaxed  gap-[1.5rem] font-mona">
+                  <NavLink
+                    to="/dashboard"
+                    className="hover:text-black hover:text-xl hover:border-r-2  border-black"
+                    activeClassName="font-bold"
+                    // onClick={onClose} // Close the Drawer on NavLink click
+                  >
+                    Dashboard
+                  </NavLink>
+                  <NavLink
+                    to="/recruitment"
+                    className="hover:text-black  hover:text-xl hover:border-r-2 border-black"
+                    activeClassName="font-bold"
+                    // onClick={onClose} // Close the Drawer on NavLink click
+                  >
+                    Recruitment
+                  </NavLink>
+                  <NavLink
+                    to="/onboarding"
+                    className="hover:text-black  hover:text-xl hover:border-r-2  border-black"
+                    activeClassName="font-bold"
+                    // onClick={onClose} // Close the Drawer on NavLink click
+                  >
+                    Onboarding/Connect
+                  </NavLink>
+                  <NavLink
+                    to="/post"
+                    className="hover:text-black  hover:text-xl hover:border-r-2  border-black"
+                    activeClassName="font-bold"
+                    // onClick={onClose} // Close the Drawer on NavLink click
+                  >
+                    Recruitment Post
+                  </NavLink>
+                </div>
+              </DrawerBody>
 
-          <div className="flex justify-between items-center absolute bottom-2 m-[20%]  ">
-            <Link to="/">
-              <SignOutButton>
-                <button className="width- rounded-md border-2 border-black bg-white px-3 py-3 hover:bg-black hover:text-white p-[20px] ">
-                  Signout
-                </button>
-              </SignOutButton>
-            </Link>
-          </div>
-        </div>
+              <div className="flex flex-col text-lg leading-normal  justify-center items-center font-mona">
+                <DrawerFooter>
+                  <img
+                    src="src\assets\logout-svgrepo-com.svg"
+                    alt=""
+                    width={40}
+                  />
+                  <Link to="/">
+                    <SignOutButton>
+                      <button className=" my-[48vh] rounded-md border-2 border-black bg-white  px-2 py-1 hover:bg-black hover:text-white">
+                        Sign Out
+                      </button>
+                    </SignOutButton>
+                  </Link>
+                </DrawerFooter>
+              </div>
+            </div>
+          </DrawerContent>
+        </Drawer>
       </div>
-    </div>
+    </>
   );
-};
+}
 
 export default SideBar;

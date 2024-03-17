@@ -12,7 +12,7 @@ const Header = () => {
   };
 
   return (
-    <header className="padding-x py-4 absolute w-full bg-white">
+    <header className="padding-x py-4 absolute w-full  bg-white border-b-2 border-gray-500">
       <nav className="flex justify-between items-center max-container">
         <Link to="/" className="flex items-center">
           <img

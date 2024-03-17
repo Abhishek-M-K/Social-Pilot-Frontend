@@ -17,7 +17,7 @@ export const DashLinks = [
 
 export const SideLinks = [
     { href: "/dashboard", label: " DashBoard"},
-    { href: "/recruitment", label: "   Recruitment"},
-    { href: "onboarding", label: "  Onboarding/Connect"   },
-    { href: "recruitmentpost", label: "  Recruitment Post" },
+    { href: "/recruitment", label: "Recruitment"},
+    { href: "/onboarding", label: "  Onboarding/Connect"   },
+    { href: "/post", label: "Recruitment Post" },
 ];
