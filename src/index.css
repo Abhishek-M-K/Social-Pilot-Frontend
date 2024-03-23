@@ -47,5 +47,9 @@
         .padding-b {
           @apply sm:pb-24 pb-12;
         }
+        .active{
+          @apply text-black text-xl border-r-2 border-black;
+
+       }
 
   }

@@ -5,29 +5,12 @@ import { Navigate } from 'react-router-dom';
 
 
 const DashBoard = () => {
-  const [isAuthenticated , setAuthenticated] = useState(false);
-  const [redirect, setRedirect ] = useState(false);
+  // const user = useUser();
 
-  useEffect(() => {
-    const checkUser = async () => {
-      // try {
-        const user = useUser();
-
-        if (!user) {
-          setRedirect(true);
-        }
-      // }
-      //  catch (error) {
-      //   console.error("Error checking authentication:", error);
-      // }
-    };
-
-    checkUser();
-  }, []);
-
-  if (redirect) {
-    return <Navigate to={"/signin"} />
-  }
+  // if (!user) {
+  //   // If user is not authenticated, redirect to signin page
+  //   return <Navigate to="/signup" />;
+  // }
 
   return (
 

@@ -11,6 +11,7 @@ import Recruitment from "./pages/Recruitment";
 import OnBoarding from "./pages/OnBoarding";
 import RecruitmentPost from "./pages/RecruitmentPost";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -58,3 +59,19 @@ function App() {
 }
 
 export default App;
+
+
+// // Define a higher-order component (HOC) for layout wrapping
+// const WithLayout = (Component) => () => (
+//   <Layout>
+//     <Component />
+//   </Layout>
+// );
+
+// // Define your components (DashBoard, Recruitment, OnBoarding, RecruitmentPost)
+
+// // Refactor routes using the WithLayout HOC
+// <Route path="/dashboard" element={WithLayout(DashBoard)} />
+// <Route path="/recruitment" element={WithLayout(Recruitment)} />
+// <Route path="/onboarding" element={WithLayout(OnBoarding)} />
+// <Route path="/post" element={WithLayout(RecruitmentPost)} />
