@@ -1,9 +1,7 @@
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
-import { useClerk } from "@clerk/clerk-react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useUser } from "@clerk/clerk-react";
 
 import "./index.css";
-
-import Loader from "./components/Loader";
 
 import LandingPage from "./pages/LandingPage";
 import About from "./pages/About";
@@ -15,23 +13,26 @@ import Recruitment from "./pages/Recruitment";
 import OnBoarding from "./pages/OnBoarding";
 import RecruitmentPost from "./pages/RecruitmentPost";
 
-function ProtectedRoute({ path, element }) {
-  const { isLoading, signedIn } = useClerk();
-  const navigate = useNavigate();
+// function ProtectedRoute({ path, element }) {
+//   const { isLoading, signedIn } = useClerk();
+//   const navigate = useNavigate();
 
-  if (isLoading) {
-    return <Loader />;
-  }
+//   if (isLoading) {
+//     return <Loader />;
+//   }
 
-  if (!signedIn) {
-    navigate("/signin");
-    return null;
-  }
+//   if (!signedIn) {
 
-  return <Route path={path} element={element} />;
-}
+//     return <Navigate to="/signin" />;
+//   }
+
+//   return <Route path={path} element={element} />;
+// }
 
 function App() {
+  const { isSignedIn } = useUser();
+  console.log(isSignedIn);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -39,58 +40,47 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
-        <Route
-          path="/dashboard/*"
-          element={
-            <ProtectedRoute
-              path="/"
-              element={
-                <Layout>
-                  <DashBoard />
-                </Layout>
-              }
-            />
-          }
-        />
-        <Route
-          path="/recruitment/*"
-          element={
-            <ProtectedRoute
-              path="/"
-              element={
-                <Layout>
-                  <Recruitment />
-                </Layout>
-              }
-            />
-          }
-        />
-        <Route
-          path="/onboarding/*"
-          element={
-            <ProtectedRoute
-              path="/"
-              element={
-                <Layout>
-                  <OnBoarding />
-                </Layout>
-              }
-            />
-          }
-        />
-        <Route
-          path="/post/*"
-          element={
-            <ProtectedRoute
-              path="/"
-              element={
-                <Layout>
-                  <RecruitmentPost />
-                </Layout>
-              }
-            />
-          }
-        />
+        {isSignedIn && (
+          <Route
+            path="/dashboard"
+            element={
+              <Layout>
+                <DashBoard />
+              </Layout>
+            }
+          />
+        )}
+
+        {isSignedIn && (
+          <Route
+            path="/recruitment"
+            element={
+              <Layout>
+                <Recruitment />
+              </Layout>
+            }
+          />
+        )}
+        {isSignedIn && (
+          <Route
+            path="/onboarding"
+            element={
+              <Layout>
+                <OnBoarding />
+              </Layout>
+            }
+          />
+        )}
+        {isSignedIn && (
+          <Route
+            path="/post"
+            element={
+              <Layout>
+                <RecruitmentPost />
+              </Layout>
+            }
+          />
+        )}
       </Routes>
     </BrowserRouter>
   );
