@@ -1,6 +1,10 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { useClerk } from "@clerk/clerk-react";
 
 import "./index.css";
+
+import Loader from "./components/Loader";
+
 import LandingPage from "./pages/LandingPage";
 import About from "./pages/About";
 import Signin from "./pages/Signin";
@@ -11,6 +15,21 @@ import Recruitment from "./pages/Recruitment";
 import OnBoarding from "./pages/OnBoarding";
 import RecruitmentPost from "./pages/RecruitmentPost";
 
+function ProtectedRoute({ path, element }) {
+  const { isLoading, signedIn } = useClerk();
+  const navigate = useNavigate();
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (!signedIn) {
+    navigate("/signin");
+    return null;
+  }
+
+  return <Route path={path} element={element} />;
+}
 
 function App() {
   return (
@@ -21,36 +40,55 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route
-          path="/dashboard"
+          path="/dashboard/*"
           element={
-            <Layout>
-              <DashBoard />
-            </Layout>
-          }
-        />
-
-         <Route
-          path="/recruitment"
-          element={
-            <Layout>
-              <Recruitment />
-            </Layout>
+            <ProtectedRoute
+              path="/"
+              element={
+                <Layout>
+                  <DashBoard />
+                </Layout>
+              }
+            />
           }
         />
         <Route
-          path="/onboarding"
+          path="/recruitment/*"
           element={
-            <Layout>
-              <OnBoarding/>
-            </Layout>
+            <ProtectedRoute
+              path="/"
+              element={
+                <Layout>
+                  <Recruitment />
+                </Layout>
+              }
+            />
           }
         />
-             <Route
-          path="/post"
+        <Route
+          path="/onboarding/*"
           element={
-            <Layout>
-              <RecruitmentPost/>
-            </Layout>
+            <ProtectedRoute
+              path="/"
+              element={
+                <Layout>
+                  <OnBoarding />
+                </Layout>
+              }
+            />
+          }
+        />
+        <Route
+          path="/post/*"
+          element={
+            <ProtectedRoute
+              path="/"
+              element={
+                <Layout>
+                  <RecruitmentPost />
+                </Layout>
+              }
+            />
           }
         />
       </Routes>
@@ -59,19 +97,3 @@ function App() {
 }
 
 export default App;
-
-
-// // Define a higher-order component (HOC) for layout wrapping
-// const WithLayout = (Component) => () => (
-//   <Layout>
-//     <Component />
-//   </Layout>
-// );
-
-// // Define your components (DashBoard, Recruitment, OnBoarding, RecruitmentPost)
-
-// // Refactor routes using the WithLayout HOC
-// <Route path="/dashboard" element={WithLayout(DashBoard)} />
-// <Route path="/recruitment" element={WithLayout(Recruitment)} />
-// <Route path="/onboarding" element={WithLayout(OnBoarding)} />
-// <Route path="/post" element={WithLayout(RecruitmentPost)} />
