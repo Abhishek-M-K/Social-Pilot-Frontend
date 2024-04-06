@@ -7,21 +7,20 @@ import { useState, useEffect } from "react";
 
 const Layout = ({ children }) => {
   //
-    return (
-      <>
-        <div className="flex m-[0.5rem]  sm:mx-[2rem] ">
-          <SideBar />
+  return (
+    <>
+      <div className="flex ">
+        <SideBar />
 
-          <div className="w-full  sm:ml-[20%] ">
-            <HeaderDash />
-            <main className="flex-grow my-[1rem]  ">{children}</main>
-          </div>
+        <div className=" w-full md:mx-[2rem]   my-[0.5rem] ">
+          <HeaderDash />
+          <main className=" my-[0.5rem] pr-[1rem] flex-1 py-4  ">
+            {children}
+          </main>
         </div>
-      </>
-    );
-
-
-
+      </div>
+    </>
+  );
 };
 
 export default Layout;

@@ -1,5 +1,5 @@
-  import { UserButton, useClerk } from "@clerk/clerk-react";
-  import React, { useEffect, useState  } from "react";
+import { UserButton, useClerk } from "@clerk/clerk-react";
+import React, { useEffect, useState  } from "react";
   import { Link,  useNavigate } from "react-router-dom";
 
   import { DashLinks, SideLinks } from "../constants/index.js";
@@ -35,10 +35,10 @@ const useAutoLogout = () => {
       setIsMenuOpen(!isMenuOpen);
     };
     return (
-      <header className="relative sm:z-50 ">
-        <nav className="flex justify-between w-full  items-center">
+      <header className="  ">
+        <nav className="flex justify-between w-full border-b-[1px] pb-[10.5px] border-[#4d4b4b43] items-center">
           <a href="">
-            <h1 className="sm:mx-0 mx-[1rem]">
+            <h1 className="sm:mx-0  font-medium text-xl">
               {" "}
               {
                 SideLinks.find((link) =>

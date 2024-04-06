@@ -11,7 +11,7 @@ const Recruitment = () => {
   // }
 
   return (
-    <div className='relative sm:z-50'>
+    <div className=''>
       djdkfjdkf
     </div>
   )
