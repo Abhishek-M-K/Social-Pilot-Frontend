@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { hamburger } from "../assets/icons/index.js";
+import { hamburger } from "../../public/assets/icons/index.js";
 import { navLinks } from "../constants/index.js";
 import { SignedIn } from "@clerk/clerk-react";
 
@@ -16,7 +16,7 @@ const Header = () => {
       <nav className="flex justify-between items-center max-container">
         <Link to="/" className="flex items-center">
           <img
-            src="src/assets/logo.svg" // Correct the path to your logo
+            src="/assets/logo.svg" // Correct the path to your logo
             alt="logo"
             height={29}
             className="m-0 h-[29px]"

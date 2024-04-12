@@ -8,6 +8,7 @@
 
 
 // // const useAutoLogout = () => {
+
 // //   const { signOut } = useClerk();
 
 // //   useEffect(() => {

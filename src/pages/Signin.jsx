@@ -20,7 +20,7 @@ const Login = () => {
           </h1>
           <div className="flex justify-center  items-center sm:h-[320px] sm:w-[226px] mx-auto  ">
             <img
-              src="src/assets/login.svg"
+              src="/assets/login.svg"
               alt=""
               className="w-full h-[290px] object-contain   max-w-xs sm:max-w-none "
               />

@@ -11,7 +11,7 @@ const Signup = () => {
           </h1>
           <div className="flex justify-center  items-center sm:h-[320px] sm:w-[226px] mx-auto  ">
             <img
-              src="src/assets/register.svg"
+              src="/assets/register.svg"
               alt=""
               className="w-full h-[290px] object-cover  max-w-xs sm:max-w-none "
             />

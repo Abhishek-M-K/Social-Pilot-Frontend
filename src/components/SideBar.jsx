@@ -85,7 +85,7 @@ const Sidebar = () => {
          h-screen "
       >
         <div className="flex items-center gap-3.5 font-medium border-b py-3 border-slate-300  mx-3">
-          <img src="src/assets/logo.svg" alt="logo" height={45} />
+          <img src="/assets/logo.svg" alt="logo" height={45} />
           <span className="text-xl whitespace-pre">SocialPilot</span>
         </div>
 

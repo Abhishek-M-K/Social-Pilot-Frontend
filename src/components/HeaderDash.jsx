@@ -3,7 +3,7 @@ import React, { useEffect, useState  } from "react";
   import { Link,  useNavigate } from "react-router-dom";
 
   import { DashLinks, SideLinks } from "../constants/index.js";
-  import { active, email, search } from "../assets/icons/index.js";
+  import { active, email, search } from "../../public/assets/icons/index.js";
 
 
 const useAutoLogout = () => {
