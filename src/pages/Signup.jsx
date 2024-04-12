@@ -1,7 +1,19 @@
 import React, { useState } from "react";
 import { SignUp } from "@clerk/clerk-react";
+import { SignIn, useUser } from "@clerk/clerk-react";
+
 
 const Signup = () => {
+  const { isSignedUp } = useUser();
+
+
+
+  if (isSignedUp) {
+    return <Navigate to="/dashboard" />;
+  }
+
+
+
   return (
     <div className="bg-[#D5DCF6]  sm:m-0 sm:py-12 md:py-16 sm:h-screen  flex justify-center ">
       <div className="flex flex-col sm:flex-row   sm:m-5 sm:w-[800px] max-w-full sm:shadow-xl">
