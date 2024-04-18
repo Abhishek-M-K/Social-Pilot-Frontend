@@ -9,8 +9,9 @@ import { SignOutButton } from "@clerk/clerk-react";
 // * React icons
 import { IoIosArrowBack } from "react-icons/io";
 import { AiOutlineAppstore } from "react-icons/ai";
-import { BsPerson } from "react-icons/bs";
-import { HiOutlineDatabase } from "react-icons/hi";
+import { MdLocalPostOffice } from "react-icons/md";
+import { PiLinkSimple } from "react-icons/pi";
+import { PiUsersLight } from "react-icons/pi";
 import { useMediaQuery } from "react-responsive";
 import { MdMenu } from "react-icons/md";
 import { NavLink, useLocation, useRoutes } from "react-router-dom";
@@ -106,7 +107,7 @@ const Sidebar = () => {
                 to={"/recruitment"}
                 className="link flex justify-start items-center  gap-4"
               >
-                <BsPerson size={36} className="min-w-max" />
+                <PiUsersLight size={36} className="min-w-max" />
                 Recruitment
               </NavLink>
             </li>
@@ -115,8 +116,8 @@ const Sidebar = () => {
                 to={"/onboarding"}
                 className="link justify-start items-center  flex gap-4"
               >
-                <HiOutlineDatabase size={36} className="min-w-max" />
-                OnBoarding
+                <PiLinkSimple size={36} className="min-w-max" />
+                Connect
               </NavLink>
             </li>
             <li>
@@ -124,7 +125,7 @@ const Sidebar = () => {
                 to={"/post"}
                 className="link flex justify-start items-center  gap-4"
               >
-                <HiOutlineDatabase size={36} className="min-w-max" />
+                <MdLocalPostOffice size={36} className="min-w-max" />
                 Recruitment Post
               </NavLink>
             </li>

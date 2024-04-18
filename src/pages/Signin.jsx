@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { SignIn, useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
-
+const baseUrl = process.env.PUBLIC_URL;
 const Login = () => {
   const { isSignedIn } = useUser();
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const Login = () => {
 
   // If the user is already signed in, redirect to the dashboard
   if (isSignedIn) {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to={`${baseUrl}/dashboard`} />;
   }
 
   // Render the login form if the user is not signed in
@@ -36,7 +36,7 @@ const Login = () => {
         <div className="bg-[#FFFFFF] w-full  sm:w-1/2 flex justify-center items-center">
           {/* Call navigateToDashboard function after successful login */}
           {/* <SignIn /> */}
-          <SignIn redirectUrl="/dashboard" afterSignIn={() => navigate("/dashboard")} />
+          <SignIn redirectUrl={`${baseUrl}/dashboard`} afterSignIn={() => navigate(`${baseUrl}/dashboard`)} />
 
         </div>
       </div>
